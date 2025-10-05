@@ -28,44 +28,28 @@ export default function Home() {
   */
 }
 
-interface SubmissionState {
-  state: "idle" | "submitting" | "success" | "error";
-  message: string;
-}
-interface FeatureItem {
-  icon?: any;
-  title: string;
-  description: string;
-  color: string;
-}
-
-type FAQItem = {
-  question: string;
-  answer: string;
-};
-
-const App: React.FC = () => {
-  const [submissionStatus, setSubmissionStatus] = useState<SubmissionState>({
+const App = () => {
+  const [submissionStatus, setSubmissionStatus] = useState({
     state: "idle",
     message: "",
   });
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null); // State for FAQ accordion
+  const [openFAQ, setOpenFAQ] = useState(null); // State for FAQ accordion
 
-  const handleSuccess = (email: string) => {
+  const handleSuccess = (email) => {
     setSubmissionStatus({
       state: "success",
       message: `Success! ${email} has been added to our exclusive list. We'll be in touch soon.`,
     });
   };
 
-  const handleError = (errorMsg: string) => {
+  const handleError = (errorMsg) => {
     setSubmissionStatus({
       state: "error",
       message: `Oops! Submission failed: ${errorMsg}. Please try again.`,
     });
   };
 
-  const Features: FeatureItem[] = [
+  const Features = [
     {
       icon: Users,
       title: "Secure campus exchange",
@@ -83,12 +67,13 @@ const App: React.FC = () => {
     {
       icon: Mail,
       title: "Priority Access",
-      description: "Get notified on orders , payment and transactions in real time.",
+      description:
+        "Get notified on orders , payment and transactions in real time.",
       color: "text-blue-400",
     },
   ];
 
-  const FAQs: FAQItem[] = [
+  const FAQs = [
     {
       question: "What is the timeline for the full launch?",
       answer:
@@ -104,6 +89,10 @@ const App: React.FC = () => {
       answer:
         "Our platform leverages generative AI for personalized listing products, something no other current solution offers at scale. It's built for speed and integration, allowing buyers and seller to meet strictly for university students",
     },
+    {
+      question: "How will the app work",
+      answer: "student will be able to post listing , ranging from books , furniture , hardware including foods , and campus event tickets might be hosted as well , And in the long run we will add various cool features in which student could take up delivery jobs \n Buyers will be able to place order , when the payment is confirmed and order is delivered , the money is sent to the sellers account, otherwise if payment is made and the order is not delivered the money will be refunded in 4days"
+    }
   ];
 
   return (
